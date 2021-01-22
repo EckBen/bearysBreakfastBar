@@ -1,42 +1,25 @@
 import { contacts, info, menu, reviews, homeTitle, menuTitle, contactTitle } from './config';
-import { loadHomePage, loadMenuPage, loadContactPage, wipeOut, viewWidth } from './page-load';
+import { loadMain, changeBtnCover } from './page-load';
 
-function changeBtnCover(oldTab, newTab) {
-  let hide = document.getElementById(`cover${oldTab}`);
-  let show = document.getElementById(`cover${newTab}`);
-  
-  hide.classList.add('hidden');
-  show.classList.remove('hidden');
-
-  currentTab = newTab;
-}
-
-// Get main div
+// Set globals
+let btnNames = ['home', 'menu', 'contact'];
+let currentTab = btnNames[0];
 let content = document.getElementById('content');
 
 // Initial home page load
-loadHomePage(content, reviews, homeTitle, info);
+loadMain(currentTab, content, reviews, homeTitle, info);
 
-// Set click events for tab navigation (change classes and move button cover)
-let currentTab = 1;
-let homeBtn = document.getElementById('home');
-let menuBtn = document.getElementById('menu');
-let contactBtn = document.getElementById('contact');
-
-homeBtn.addEventListener("click", () => {
-  changeBtnCover(currentTab, 1);
-  wipeOut(content);
-  loadHomePage(content, reviews, homeTitle, info);
-});
-
-menuBtn.addEventListener("click", () => {
-  changeBtnCover(currentTab, 2);
-  wipeOut(content);
-  loadMenuPage(content, menu, menuTitle);
-});
-
-contactBtn.addEventListener("click", () => {
-  changeBtnCover(currentTab, 3);
-  wipeOut(content);
-  loadContactPage(content, contacts, contactTitle);
-});
+// Set click events for tab navigation
+btnNames.forEach(btnName => {
+  let btn = document.getElementById(btnName);
+  btn.addEventListener('click', () => {
+    currentTab = changeBtnCover(currentTab, btnName);
+    if (btnName == 'home') {
+      loadMain(btnName, content, reviews, homeTitle, info);
+    } else if (btnName == 'menu') {
+      loadMain(btnName, content, menu, menuTitle);
+    } else {
+      loadMain(btnName, content, contacts, contactTitle);
+    }
+  });
+})

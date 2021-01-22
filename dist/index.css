@@ -388,20 +388,21 @@ ul > li {
   cursor: pointer;
 }
 
-#cover1 {
+#covercontact {
+  top: 1px;
+  left: 261px;
+}
+
+#coverhome {
   top: 1px;
   left: 21px;
 }
 
-#cover2 {
+#covermenu {
   top: 1px;
   left: 141px;
 }
 
-#cover3 {
-  top: 1px;
-  left: 261px;
-}
 
 @media (max-width: 1130px) {
   footer {
@@ -614,18 +615,18 @@ ul > li {
     margin-left: 5px;
   }
 
-  #cover1 {
+  #covercontact {
+    top: 1px;
+    left: 216px;
+  }
+
+  #coverhome {
     top: 1px;
     left: 6px;
   }
 
-  #cover2 {
+  #covermenu {
     top: 1px;
     left: 111px;
-  }
-
-  #cover3 {
-    top: 1px;
-    left: 216px;
   }
 }
